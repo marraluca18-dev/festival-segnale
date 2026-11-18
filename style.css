@@ -1,14 +1,13 @@
-/* Stile iniziale: tipografia, colori e variabili CSS sono già predisposti.
-   Lavoreremo su collegamenti, CSS condiviso e disposizione delle schede. */
+/* Segnale: esempio completo della consegna su Home e Programma. */
 
-/* Scelte comuni: ogni regola usa var() per richiamarne il valore. */
+/* Valori condivisi: le regole interessate li richiamano con var(). */
 :root {
-  --colore-primario: #1f4e79;
-  --colore-primario-scuro: #14334f;
+  --colore-primario: #234c78;
+  --colore-primario-scuro: #163454;
   --colore-sfondo: #f5f2e9;
   --colore-testo: #202923;
-  --font-testo: Verdana, Geneva, sans-serif;
-  --font-titoli: "Trebuchet MS", Helvetica, sans-serif;
+  --font-testo: "Inter", Arial, sans-serif;
+  --font-titoli: Georgia, "Times New Roman", serif;
 }
 
 * {
@@ -29,12 +28,11 @@ a {
 }
 
 a:hover {
-  text-decoration-thickness: 3px;
+  text-decoration: underline;
 }
 
-a:focus-visible {
+a:focus {
   outline: 3px solid var(--colore-testo);
-  outline-offset: 4px;
 }
 
 .container {
@@ -43,10 +41,16 @@ a:focus-visible {
   margin: 0 auto;
 }
 
+
 .site-header {
   padding: 1.25rem 0;
   border-bottom: 4px solid var(--colore-primario);
+  position: sticky;
+  top: 0;
+  background: var(--colore-sfondo);
+  z-index: 100;
 }
+
 
 .brand {
   display: inline-block;
@@ -64,19 +68,20 @@ a:focus-visible {
   font-weight: normal;
 }
 
+
 nav {
   margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
 nav a {
   display: inline-block;
-  margin-right: 1rem;
   padding: 0.25rem 0;
 }
 
-nav a[aria-current="page"] {
-  font-weight: bold;
-}
 
 .intro {
   padding: 3rem 0 1rem;
@@ -156,15 +161,14 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
+/* Disposizione di base: una colonna. */
 .event-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
 }
 
-
 .event-card {
-  margin-bottom: 1.5rem;
   overflow: hidden;
   border: 1px solid #b7c0b7;
   border-radius: 0.75rem;
@@ -178,14 +182,11 @@ h3 {
 }
 
 .event-body {
-  padding: 1.75rem;
-}
-
-.event-body p:last-child {
-  margin-bottom: 0;
+  padding: 1.5rem;
 }
 
 .event-place {
+  margin-bottom: 0;
   color: #46564b;
   font-size: 0.875rem;
 }
@@ -209,15 +210,129 @@ h3 {
 .skip-link:focus {
   top: 1rem;
 }
+
+
+/* Da 600 px: due colonne. */
 @media (min-width: 600px) {
   .event-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Menu orizzontale da 600 px in su */
+  nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
+
+/* Da 1024 px: tre colonne. Questa regola segue quella da 600 px. */
 @media (min-width: 1024px) {
   .event-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* Info e luoghi: componenti aggiunti al sito esistente. */
+button {
+  padding: 0.65rem 0.5rem;
+  border: 2px solid var(--colore-primario);
+  border-radius: 0.5rem;
+  background: var(--colore-primario);
+  color: #ffffff;
+  font-family: var(--font-testo);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--colore-primario-scuro);
+}
+
+button:focus {
+  outline: 3px solid var(--colore-testo);
+}
+
+.venue-gallery {
+  max-width: 54rem;
+}
+
+.venue-swiper {
+  width: 100%;
+}
+
+.venue-slide {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #b7c0b7;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}
+
+.venue-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.venue-slide figcaption {
+  padding: 1.25rem;
+}
+
+.gallery-controls {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.gallery-count {
+  margin: 0.75rem 0 0;
+  text-align: center;
+}
+
+@media (max-width: 319px) {
+  .gallery-label {
+    font-size: 0;
+  }
+}
+
+.map-container {
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border: 1px solid #b7c0b7;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}
+
+.map-container iframe {
+  display: block;
+  width: 100%;
+  height: 28rem;
+  border: 0;
+}
+
+.venue-addresses {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.venue-address {
+  padding: 1.25rem;
+  border: 1px solid #b7c0b7;
+  border-radius: 0.75rem;
+}
+
+.teaching-note {
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .venue-addresses {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
