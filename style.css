@@ -336,3 +336,21 @@ button:focus {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* Riquadro meteo */
+
+.meteo-card {
+  max-width: 28rem;
+  padding: 1.25rem;
+  border: 1px solid #b7c0b7;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}
+
+.meteo-card p {
+  margin: 0.5rem 0;
+}
+
+.meteo-card strong {
+  color: var(--colore-primario);
+}
